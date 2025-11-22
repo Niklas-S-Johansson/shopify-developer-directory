@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Shopify Developers in Da Nang | Learn How the Directory Works</title>
+    <meta name="description" content="Learn how to get on the list as a Shopify developer.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: #ffffff;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        :root {
+            --primary-color: #2E7D32;
+            --footer-bg: #f4f4f4;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 36px;
+            width: auto;
+        }
+
+        .logo-placeholder {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            gap: 70px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 8px;
+        }
+
+        .burger-menu span {
+            width: 24px;
+            height: 2px;
+            background-color: #222;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .content-section h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-top: 50px;
+            margin-bottom: 24px;
+        }
+
+        .content-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 16px;
+        }
+
+        .content-section ul {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            margin-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .content-section li {
+            margin-bottom: 12px;
+        }
+
+        .content-section strong {
+            color: #222;
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background-color: #f8f9fa;
+            padding: 24px;
+            border-radius: 14px;
+            border-left: 4px solid var(--primary-color);
+            margin: 24px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            padding: 60px 40px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #222;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 12px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .curator-credit {
+            background-color: #ffffff;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 13px;
+            margin-bottom: 24px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .curator-credit strong {
+            color: var(--primary-color);
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-divider {
+            border-top: 1px solid #ddd;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .footer-divider a {
+            color: #222;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-divider a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 12px 20px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .logo {
+                flex: 1;
+                text-align: center;
+            }
+
+            .content-section {
+                padding: 40px 20px;
+            }
+
+            .content-section h1 {
+                font-size: 32px;
+                margin-bottom: 24px;
+            }
+
+            .content-section h2 {
+                font-size: 24px;
+                margin-top: 32px;
+                margin-bottom: 16px;
+            }
+
+            .content-section p,
+            .content-section li {
+                font-size: 15px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo"><div class="logo-placeholder">LOGO</div>
+            </div>
+            <nav>
+              <a href="/shopify-developer-directory/">Browse Developers</a>
+              <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
+              <a href="/shopify-developer-directory/contact/">Contact</a>
+            </nav>
+            <a href="https://forms.gle/fLgVJmKLGkjFEG7a9" class="submit-btn">Submit Profile</a>
+        </div>
+        <div class="burger-menu">
+          <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <h1>Find a Shopify Developer in Vietnam</h1>
+            <p>On this website we list Shopify developers from central Vietnam and Da Nang.</p>
+            <p>For businesses and anyone else looking to get in touch with a Shopify designer in Da Nang, use the <a href="contact.html">contact page</a> to send a message to the directory. Expect a response within a day.</p>
+
+            <div class="highlight-box">
+                <p>There is a real person behind every profile in this directory. All submissions are manually reviewed before publishing.</p>
+            </div>
+
+            <section class="content-section">
+                <h2>How to Get On the List</h2>
+                <p>To submit a profile:</p>
+                <ul>
+                    <li>Click the "Submit Profile" button. It will take you to a form.</li>
+                    <li>Answer all the questions.</li>
+                </ul>
+                <p>That's all you need to do!</p>
+                <p>After that, your request will be turned into a profile. Please answer all questions truthfully, and write proper descriptions in the text fields.</p>
+    
+                <div class="highlight-box">
+                    <p><strong>Yes, you can submit a profile in Vietnamese.</strong></p>
+                </div>
+            </section>
+            <section class="content-section">
+                <h2>Are Shopify Developers From Vietnam Vetted?</h2>
+                <p>All profiles in the directory are based on user submissions. We do not interview or vet developers.</p>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">LOGO</div>
+                <div class="curator-credit">
+                    Curated & maintained by <strong>Your Name</strong>. The directory is open for submission to anyone in Da Nang and central Vietnam, connecting businesses with Shopify designers.
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Information</h4>
+                <a href="/shopify-developer-directory/">Browse Developers</a>
+                <a href="/shopify-developer-directory/contact/">Contact</a>
+                <a href="https://forms.gle/fLgVJmKLGkjFEG7a9">Submit Profile</a>
+                <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
+                <a href="/shopify-developer-directory/about/">About</a>
+            </div>
+        </div>
+        <div class="footer-divider">
+            © 2025 <a href="https://yoursite.com" target="_blank">Your Name</a>. All rights reserved. | Shopify Developers Directory
+        </div>
+    </footer>
+
+    <script>
+        let lastScrollY = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            lastScrollY = window.scrollY;
+        });
+    </script>
+</body>
+</html>
