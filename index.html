@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,7 @@
         }
 
         :root {
-            --primary-color: #2E7D32;
+            --primary-color: #6d28d9;
             --footer-bg: #f4f4f4;
         }
 
@@ -408,6 +409,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -432,9 +434,9 @@
     <main>
         <!-- Hero -->
         <section class="hero">
-            <h1>Shopify Developers Directory</h1>
-            <p>Find vetted Shopify developers and experts in Da Nang and beyond</p>
-            <div class="hero-meta">Curated by <strong>Your Name</strong> • Last updated December 2024</div>
+            <h1>Shopify Developers in Da Nang</h1>
+            <p>This is a curated list of Shopify developers and designers in Da Nang, Vietnam. Check out profiles of local freelancers, consultants, and specialists. Reach out to get in touch.</p>
+            <div class="hero-meta">Created by <strong>Niklas S. Johansson</strong> • Last updated November 2025</div>
         </section>
 
         <!-- Filter -->
@@ -445,6 +447,7 @@
                 <div class="filter-tag">Store Setup</div>
                 <div class="filter-tag">App Development</div>
                 <div class="filter-tag">Dropshipping Experience</div>
+                <div class="filter-tag">Enterprise Experience</div>
             </div>
         </section>
 
@@ -518,23 +521,19 @@
             <div class="footer-section">
                 <div class="footer-logo">LOGO</div>
                 <div class="curator-credit">
-                    Curated & maintained by <strong>Your Name</strong>, Shopify expert and developer in Da Nang. Quality-verified directory connecting businesses with experienced Shopify developers. Supporting the local development community.
+                    Curated & maintained by <strong>Niklas S. Johansson</strong>. The directory is open for submission to anyone in Da Nang and central Vietnam, connecting businesses with Shopify designers.
                 </div>
             </div>
             <div class="footer-section">
-                <h4>Navigation</h4>
+                <h4>Information</h4>
                 <a href="index.html">Browse Developers</a>
+                <a href="#">How It Works</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <div class="footer-section">
-                <h4>Information</h4>
-                <a href="#">How It Works</a>
-                <a href="#">Curator Bio</a>
-            </div>
         </div>
         <div class="footer-divider">
-            © 2025 Your Name. All rights reserved. | Shopify Developers Directory
+            © 2025 Niklas S. Johansson. All rights reserved. | Shopify Developers Directory
         </div>
     </footer>
 
@@ -556,10 +555,10 @@
             tag.addEventListener('click', () => {
                 document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
                 tag.classList.add('active');
-                
+
                 const selectedCategory = tag.textContent.trim();
                 const cards = document.querySelectorAll('.listing-card');
-                
+
                 cards.forEach(card => {
                     if (selectedCategory === 'All') {
                         card.style.display = 'block';
@@ -575,4 +574,5 @@
         });
     </script>
 </body>
+
 </html>
