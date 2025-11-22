@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Shopify Developer Directory in Da Nang</title>
+    <meta name="description" content="Go here to get in touch with developer listings for Shopify, and the directory owner.">
+    <style>
+        /* Reuse exact styling from index.html */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: #ffffff;
+            color: #222;
+            line-height: 1.6;
+        }
+        :root {
+            --primary-color: #6d28d9;
+            --footer-bg: #f4f4f4;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        header.hidden { transform: translateY(-100%); }
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-placeholder { font-size: 20px; font-weight: 700; }
+        nav { display: flex; gap: 70px; flex: 1; justify-content: center; }
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--primary-color); }
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .burger-menu { display: none; flex-direction: column; cursor: pointer; gap: 5px; padding: 8px; }
+        .burger-menu span { width: 24px; height: 2px; background-color: #222; }
+
+        main { margin-top: 80px; }
+
+        .hero {
+            padding: 60px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        .hero h1 { font-size: 48px; font-weight: 700; margin-bottom: 16px; }
+        .hero p { font-size: 18px; color: #666; margin-bottom: 24px; max-width: 700px; margin: 0 auto 24px; }
+
+        .content-section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 40px;
+        }
+        .content-section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .content-section p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .content-section form {
+            margin-top: 30px;
+            padding: 24px;
+            border: 1px solid #e0e0e0;
+            border-radius: 14px;
+        }
+        form input, form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        form button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        form button:hover { opacity: 0.9; }
+
+        footer {
+            background-color: var(--footer-bg);
+            padding: 60px 40px;
+            margin-top: 60px;
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-section h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .footer-section a {
+            display: block;
+            color: #222;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 12px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .footer-section a:hover { opacity: 1; }
+        .curator-credit {
+            background-color: #ffffff;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 13px;
+            margin-bottom: 24px;
+            border: 1px solid #e0e0e0;
+        }
+        .curator-credit strong { color: var(--primary-color); }
+        .footer-logo { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+        .footer-divider {
+            border-top: 1px solid #ddd;
+            padding-top: 24px;
+            text-align: center;
+            font-size: 13px;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .header-content { padding: 12px 20px; }
+            nav { display: none; }
+            .burger-menu { display: flex; }
+            .hero { padding: 40px 20px; }
+            .hero h1 { font-size: 32px; }
+            .content-section { padding: 0 20px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="logo"><div class="logo-placeholder">LOGO</div></div>
+        <nav>
+            <a href="index.html">Browse Developers</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button class="submit-btn">Submit Listing</button>
+    </div>
+    <div class="burger-menu">
+        <span></span><span></span><span></span>
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+        <h1>Contact Shopify Developers in Da Nang</h1>
+        <p>Use this page to get in touch with developer profiles or reach the directory owner.</p>
+    </section>
+
+    <section class="content-section">
+        <h2>Contact Profiles</h2>
+
+        <p>Use this form to connect with Shopify developers, ask questions, and update your profile. Include a link to the profile you want to contact and we will forward your email and message.</p>
+
+        <p>For submissions use the Submit-button in the top right.</p>
+
+        <h2>Find a Shopify Developer in Vietnam</h2>
+
+        <p>For businesses and anyone else looking to get in touch with a Shopify designer in Da Nang, use the contact page to send a message to the directory.</p>
+
+        <p>Expect a response within a day.</p>
+
+        <p>There is a real person behind every profile in this directory. All submissions are manually reviewed before publishing.</p>
+
+        <form>
+            <input type="text" placeholder="Your name">
+            <input type="email" placeholder="Your email">
+            <input type="text" placeholder="Link to profile (optional)">
+            <textarea rows="6" placeholder="Your message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="footer-logo">LOGO</div>
+            <div class="curator-credit">
+                Curated & maintained by <strong>Niklas S. Johansson</strong>. The directory is open for submission to anyone in Da Nang and central Vietnam, connecting businesses with Shopify designers.
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>Information</h4>
+            <a href="index.html">Browse Developers</a>
+            <a href="#">How It Works</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+    <div class="footer-divider">
+        © 2025 Niklas S. Johansson. All rights reserved. | Shopify Developers Directory
+    </div>
+</footer>
+
+<script>
+    let lastScrollY = 0;
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > lastScrollY && window.scrollY > 100) {
+            header.classList.add('hidden');
+        } else {
+            header.classList.remove('hidden');
+        }
+        lastScrollY = window.scrollY;
+    });
+</script>
+
+</body>
+</html>
