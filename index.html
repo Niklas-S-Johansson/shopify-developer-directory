@@ -456,7 +456,7 @@
 
         <!-- Directory Listings -->
         <section class="directory">
-            <div class="results-count">Showing 3 developers</div>
+            <div class="results-count"></div>
             <div class="listing-grid">
                 <!-- Listing 1 -->
                 <div class="listing-card" data-category="Theme Development">
@@ -578,6 +578,16 @@ document.querySelectorAll('.filter-tag').forEach(tag => {
                 }
             }
         });
+
+        // Initialize results count on page load
+        function updateResultsCount() {
+            const visibleCards = document.querySelectorAll('.listing-card:not([style*="display: none"])').length;
+            const totalCards = document.querySelectorAll('.listing-card').length;
+            document.querySelector('.results-count').textContent = `Showing ${totalCards} developer${totalCards !== 1 ? 's' : ''}`;
+        }
+        
+        // Call on page load
+        document.addEventListener('DOMContentLoaded', updateResultsCount);
         
         // Update the results count
         document.querySelector('.results-count').textContent = `Showing ${visibleCount} developer${visibleCount !== 1 ? 's' : ''}`;
