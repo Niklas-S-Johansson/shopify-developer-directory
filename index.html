@@ -555,28 +555,34 @@
             lastScrollY = window.scrollY;
         });
 
-        // Filter tags interaction
-        document.querySelectorAll('.filter-tag').forEach(tag => {
-            tag.addEventListener('click', () => {
-                document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
-                tag.classList.add('active');
-
-                const selectedCategory = tag.textContent.trim();
-                const cards = document.querySelectorAll('.listing-card');
-
-                cards.forEach(card => {
-                    if (selectedCategory === 'All') {
-                        card.style.display = 'block';
-                    } else {
-                        if (card.getAttribute('data-category') === selectedCategory) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    }
-                });
-            });
+// Filter tags interaction
+document.querySelectorAll('.filter-tag').forEach(tag => {
+    tag.addEventListener('click', () => {
+        document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+        
+        const selectedCategory = tag.textContent.trim();
+        const cards = document.querySelectorAll('.listing-card');
+        let visibleCount = 0;
+        
+        cards.forEach(card => {
+            if (selectedCategory === 'All') {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                if (card.getAttribute('data-category') === selectedCategory) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            }
         });
+        
+        // Update the results count
+        document.querySelector('.results-count').textContent = `Showing ${visibleCount} developer${visibleCount !== 1 ? 's' : ''}`;
+    });
+});
     </script>
 </body>
 
