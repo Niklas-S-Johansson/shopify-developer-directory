@@ -52,9 +52,9 @@
             margin: 0 auto;
             padding: 16px 40px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
-            gap: 70px;
+            gap: 40px;
         }
 
         .logo {
@@ -68,6 +68,7 @@
             gap: 70px;
             flex: 1;
             justify-content: center;
+            margin: 0 auto;
         }
 
         nav a {
@@ -132,13 +133,13 @@
 
         /* Main */
         main {
-            margin-top: 80px;
+            padding-top: 10vh;
         }
 
         .section {
             max-width: 900px;
             margin: 0 auto;
-            padding: var(--spacing) 40px;
+            padding: 0 40px var(--spacing);
             background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%);
         }
 
@@ -219,18 +220,25 @@
             nav {
                 display: none;
             }
+            
+            .button {
+                order: 1;
+            }
 
             .burger-menu {
                 display: flex;
+                order: 3;
             }
 
             .logo {
                 flex: 1;
                 text-align: center;
+                order: 2;
             }
 
             .section {
                 padding: 40px 20px;
+                
             }
 
             .section h1 {
@@ -247,16 +255,15 @@
     <header>
         <div class="header-content">
             <div class="logo">LOGO</div>
-            </div>
             <nav>
               <a href="/shopify-developer-directory/">Browse Developers</a>
               <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
               <a href="/shopify-developer-directory/contact/">Contact</a>
             </nav>
             <a href="https://forms.gle/fLgVJmKLGkjFEG7a9" class="button">Submit Profile</a>
-        </div>
-        <div class="burger-menu onclick="alert('Menu clicked')">
+            <div class="burger-menu onclick="alert('Menu clicked')">
           <span></span><span></span><span></span>
+            </div>
         </div>
     </header>
 
@@ -277,7 +284,7 @@
             <p>Step 2: Answer all the questions.</p>
             <p>That's all you need to do!</p>
             <div>
-                <p><italics>Yes, you can submit a profile in Vietnamese.</italics></p>
+                <p>You can submit a profile in Vietnamese 🫰</p>
             </div>
             <p>After that, your request will be turned into a profile. Please answer all questions truthfully, and write proper descriptions in the text fields.</p>
         </section>
@@ -290,8 +297,8 @@
         </section>
 
         <!-- Back -->
-        <section class="button">
-                <a href="../index.html" class="button">← Back to Browsing</a>
+        <section class="section">
+            <a href="../index.html" class="button">← Back to Browsing</a>
         </section>
     </main>
 
