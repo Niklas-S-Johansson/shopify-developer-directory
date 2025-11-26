@@ -20,8 +20,16 @@
         }
 
         :root {
-            --primary-color: #6d28d9;
+            --primary: #7b30dd;
+            --text: #222;
+            --text-small: 13px;
+            --bg: #ffffff;
+            --bg-light: #f0f0f0;
+            --border: #e0e0e0;
             --footer-bg: #f4f4f4;
+            --spacing: 24px;
+            --spacing-small: 10px;
+            --radius: 14px;
         }
 
         /* Header */
@@ -29,8 +37,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #ffffff;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border);
             z-index: 1000;
             transition: transform 0.3s ease;
         }
@@ -173,47 +180,31 @@
         }
 
         .footer-content {
-            max-width: 1400px;
+            max-width: 900px;
             margin: 0 auto;
+            padding: 0 40px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
-
-        .footer-section h4 {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 16px;
-        }
-
-        .footer-section a {
+        
+        .footer-content .link a {
             display: block;
-            color: #222;
-            text-decoration: none;
-            font-size: 14px;
             margin-bottom: 12px;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
-
-        .footer-section a:hover {
-            opacity: 1;
         }
 
         .curator-credit {
-            background-color: #ffffff;
-            padding: 12px 16px;
-            border-radius: 14px;
-            font-size: 13px;
+            background-color: var(--bg);
+            padding: var(--spacing-small) 16px;
+            border-radius: var(--radius);
+            font-size: var(--text-small);
             margin-bottom: 24px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border);
         }
 
         .curator-credit strong {
-            color: var(--primary-color);
+            color: var(--primary);
         }
 
         .footer-logo {
@@ -223,21 +214,11 @@
         }
 
         .footer-divider {
-            border-top: 1px solid #ddd;
+            border-top: 1px solid var(--border);
             padding-top: 24px;
             text-align: center;
             font-size: 13px;
-            color: #999;
-        }
-
-        .footer-divider a {
-            color: #222;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-divider a:hover {
-            color: var(--primary-color);
+            color: var(--text);
         }
 
         /* Mobile */
@@ -281,7 +262,6 @@
 
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 32px;
             }
         }
     </style>
@@ -334,17 +314,16 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
+            <div>
                 <div class="footer-logo">LOGO</div>
                 <div class="curator-credit">
                 Curated & maintained by <strong>Niklas S. Johansson</strong>. The directory is open for submission to anyone in Da Nang and central Vietnam, connecting businesses with Shopify designers.
                 </div>
             </div>
-            <div class="footer-section">
-                <h4>Information</h4>
+            <div class="link">
+                <h3>Information</h3>
                 <a href="/shopify-developer-directory/">Browse Developers</a>
                 <a href="/shopify-developer-directory/contact/">Contact</a>
                 <a href="https://forms.gle/fLgVJmKLGkjFEG7a9">Submit Profile</a>
@@ -352,8 +331,8 @@
                 <a href="/shopify-developer-directory/about/">About</a>
             </div>
         </div>
-        <div class="footer-divider">
-            © 2025 <a href="https://yoursite.com" target="_blank">Your Name</a>. All rights reserved. | Shopify Developers Directory
+        <div class="footer-divider link ">
+            © 2025 <a href="https://nsjohansson.com">Niklas S. Johansson</a>. All rights reserved. | Shopify Developers in Da Nang
         </div>
     </footer>
 
