@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2E7D32;
+            --text: #222;
+            --text-light: #666;
+            --text-lighter: #999;
+            --bg: #ffffff;
+            --bg-light: #f0f0f0;
+            --bg-lighter: #f8f9fa;
+            --border: #e0e0e0;
+            --footer-bg: #f4f4f4;
+            --spacing: 24px;
+            --radius: 14px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--bg);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 70px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 8px;
+        }
+
+        .burger-menu span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text);
+        }
+
+        /* Main */
+        main {
+            margin-top: 80px;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--spacing) 40px;
+            background: linear-gradient(135deg, var(--bg-lighter) 0%, var(--bg) 100%);
+        }
+
+        .section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+        }
+
+        /* Hero Section */
+        #pf-pic {
+            width: 160px;
+            height: 160px;
+            background-color: var(--bg-light);
+            border-radius: var(--radius);
+            margin: 0 auto 32px;
+            display: block;
+            object-fit: cover;
+        }
+
+        #pf-name {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        #pf-location {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        #pf-status {
+            display: inline-block;
+            background-color: var(--bg-light);
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Bio */
+        .bio-item {
+            margin-bottom: 40px;
+        }
+
+        #pf-bio {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        /* Specialties */
+        #pf-skills {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        #pf-skills li {
+            background-color: var(--bg-light);
+            padding: 8px 16px;
+            border-radius: var(--radius);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Languages */
+        .languages {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .language-item {
+            background-color: var(--bg-light);
+            padding: 16px;
+            border-radius: var(--radius);
+            font-size: 14px;
+        }
+
+        .language-item strong {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        /* Projects */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing);
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            border-color: var(--primary);
+            border-radius: var(--radius);
+            padding: var(--spacing);
+            transition: all 0.3s;
+        }
+
+        /* Links */
+        .links-grid {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s;
+            font-size: 24px;
+        }
+
+        .link-btn:hover {
+            border-color: var(--primary);
+            background-color: var(--bg-lighter);
+        }
+
+        /* Back Button */
+        .back-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            padding: 60px 40px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 12px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .curator-credit {
+            background-color: var(--bg);
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            font-size: 13px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .curator-credit strong {
+            color: var(--primary);
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-divider {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-lighter);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 12px 20px;
+                gap: 16px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .logo {
+                flex: 1;
+                text-align: center;
+            }
+
+            .section {
+                padding: 40px 20px;
+            }
+
+            #pf-pic {
+                width: 120px;
+                height: 120px;
+            }
+
+            #pf-name {
+                font-size: 32px;
+            }
+
+            .languages {
+                grid-template-columns: 1fr;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script id="profileData" type="application/json">
+    {
+      "fullName": "John Doe",
+      "profilePic": "profile.jpg",
+      "location": "Da Nang, Vietnam",
+      "skills": ["Theme Development", "Store Management"],
+      "bio": "Short professional bio goes here.",
+      "website": "https://example.com",
+      "status": "Freelancer",
+      "languages": {
+        "vietnamese": "Intermediate",
+        "english": "Fluent"
+      },
+      "project1": "Project One description.",
+      "project2": "Project Two description."
+    }
+    </script>
+    
+    <header>
+        <div class="header-content">
+            <div class="logo">LOGO</div>
+            <nav>
+              <a href="/shopify-developer-directory/">Browse Developers</a>
+              <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
+              <a href="/sh opify-developer-directory/contact/">Contact</a>
+            </nav>
+            <a href="https://forms.gle/fLgVJmKLGkjFEG7a9" class="submit-btn">Submit Profile</a>
+        </div>
+        <div class="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="section">
+            <img id="pf-pic" alt="Profile"></img>
+            <h1 id="pf-name"></h1>
+            <div id="pf-location"></div>
+            <div id="pf-status"></div>
+        </section>
+
+        <!-- Shopify Developer Bio Section -->
+        <section class="section">
+            <h2>About</h2>
+            <div class="bio-item">
+                <p id="pf-bio"></p>
+            </div>
+
+            <h2>Specialties</h2>
+            <div class="bio-item">
+                <ul id="pf-skills"></ul>
+            </div>
+
+            <h2>Languages</h2>
+            <div class="languages">
+                <div class="language-item">
+                    <strong>Vietnamese</strong>
+                    <div id="pf-lang-vn"></div>
+                </div>
+                <div class="language-item">
+                    <strong>English</strong>
+                    <div id="pf-lang-en"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <p>Project 1</p>
+                    <p id="pf-project1"></p>
+                </div>
+                <div class="project-card">
+                    <p>Project 2</p>
+                    <p id="pf-project2"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Links Section-->
+        <section class="section">
+            <h2>Links</h2>
+            <div class="links-grid">
+                <a id="pf-website" class="link-btn" title="Website"></a>
+            </div>
+        </section>
+
+        <!-- Back -->
+        <section class="section">
+            <a href="../index.html" class="back-btn">← Back to Browsing</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">LOGO</div>
+                <div class="curator-credit">
+                    Curated & maintained by <strong>Your Name</strong>, Shopify expert and developer in Da Nang. Quality-verified directory connecting businesses with experienced Shopify developers. Supporting the local development community.
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <a href="../index.html">Browse Developers</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Information</h4>
+                <a href="#">How It Works</a>
+                <a href="#">Curator Bio</a>
+            </div>
+        </div>
+        <div class="footer-divider">
+            © 2025 Your Name. All rights reserved. | Shopify Developers Directory
+        </div>
+    </footer>
+
+    <script>
+        let lastScrollY = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            lastScrollY = window.scrollY;
+        });
+    </script>
+
+    <script>
+        const data = JSON.parse(document.getElementById('profileData').textContent);
+        document.getElementById('pf-name').textContent = data.fullName;
+        document.getElementById('pf-pic').src = data.profilePic;
+        document.getElementById('pf-location').textContent = data.location;
+        document.getElementById('pf-bio').textContent = data.bio;
+        document.getElementById('pf-website').href = data.website;
+        document.getElementById('pf-status').textContent = data.status;
+        document.getElementById('pf-lang-vn').textContent = data.languages.vietnamese;
+        document.getElementById('pf-lang-en').textContent = data.languages.english;
+        document.getElementById('pf-project1').textContent = data.project1;
+        document.getElementById('pf-project2').textContent = data.project2;
+        document.getElementById('pf-skills').innerHTML = skills
+          .map(s => `<li>${s}</li>`)
+          .join('');
+    </script>
+</body>
+</html>
