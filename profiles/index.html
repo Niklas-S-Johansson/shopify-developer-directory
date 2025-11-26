@@ -34,9 +34,9 @@
         /* Header */
         header {
             position: fixed;
+            background-color: var(--bg);
             top: 0;
             width: 100%;
-            background-color: var(--bg);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
             transition: transform 0.3s ease;
@@ -95,7 +95,7 @@
             opacity: 1;
         }
 
-        .submit-btn {
+        .button {
             background-color: var(--primary);
             color: white;
             padding: var(--spacing-small) 20px;
@@ -107,23 +107,24 @@
             flex-shrink: 0;
         }
 
-        .submit-btn:hover {
+        .button:hover {
             opacity: 0.9;
             transform: translateY(-2px);
         }
 
-        .burger-menu {
+       .burger-menu {
             display: none;
             flex-direction: column;
             cursor: pointer;
             gap: 5px;
-            padding: var(--spacing-small);
+            padding: 10px;
+            margin-left: auto;
         }
 
         .burger-menu span {
             width: 24px;
             height: 2px;
-            background-color: var(--text);
+            background-color: var();
         }
 
         /* Main */
@@ -136,6 +137,13 @@
             margin: 0 auto;
             padding: var(--spacing) 40px;
             background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%);
+        }
+
+        .section h1 {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 12px;
         }
 
         .section h2 {
@@ -154,13 +162,6 @@
             margin: 0 auto 32px;
             display: block;
             object-fit: cover;
-        }
-
-        #pf-name {
-            font-size: 48px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 12px;
         }
 
         /* Bio */
@@ -203,24 +204,6 @@
             border: 1px solid var(--border);
             border-radius: var(--radius);
             padding: var(--spacing);
-        }
-
-        /* Back Button */
-        .back-btn {
-            background-color: var(--primary);
-            color: white;
-            padding: var(--spacing-small) 20px;
-            border-radius: var(--radius);
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-
-        .back-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
         }
 
         /* Footer */
@@ -296,13 +279,17 @@
                 padding: 40px 20px;
             }
 
+            .section h1 {
+                font-size: 32px;
+            }
+            
+            .section h2 {
+                font-size: 24px;
+            }
+
             #pf-pic {
                 width: 120px;
                 height: 120px;
-            }
-
-            #pf-name {
-                font-size: 32px;
             }
 
             .languages {
@@ -346,9 +333,9 @@
               <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
               <a href="/sh opify-developer-directory/contact/">Contact</a>
             </nav>
-            <a href="https://forms.gle/fLgVJmKLGkjFEG7a9" class="submit-btn">Submit Profile</a>
+            <a href="https://forms.gle/fLgVJmKLGkjFEG7a9" class="button">Submit Profile</a>
         </div>
-        <div class="burger-menu">
+        <div class="burger-menu onclick="alert('Menu clicked')">
             <span></span>
             <span></span>
             <span></span>
@@ -409,9 +396,10 @@
                 </div>
             </div>
         </section>
+        
         <!-- Back -->
         <section class="section">
-            <a href="../index.html" class="back-btn">← Back to Browsing</a>
+            <a href="../index.html" class="button">← Back to Browsing</a>
         </section>
     </main>
 
