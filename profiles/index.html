@@ -12,16 +12,15 @@
         }
 
         :root {
-            --primary: #2E7D32;
+            --primary: #7b30dd;
             --text: #222;
-            --text-light: #666;
-            --text-lighter: #999;
+            --text-small: 13px;
             --bg: #ffffff;
             --bg-light: #f0f0f0;
-            --bg-lighter: #f8f9fa;
             --border: #e0e0e0;
             --footer-bg: #f4f4f4;
             --spacing: 24px;
+            --spacing-small: 10px;
             --radius: 14px;
         }
 
@@ -82,15 +81,28 @@
             color: var(--primary);
         }
 
+        /* Hyperlinks */
+        .link a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: var(--text-small);
+            margin-bottom: var(--spacing-small);
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .link a:hover {
+            opacity: 1;
+        }
+
         .submit-btn {
             background-color: var(--primary);
             color: white;
-            border: none;
-            padding: 10px 20px;
+            padding: var(--spacing-small) 20px;
             border-radius: var(--radius);
             cursor: pointer;
-            font-size: 14px;
             font-weight: 500;
+            text-decoration: none;
             transition: all 0.3s;
             flex-shrink: 0;
         }
@@ -105,7 +117,7 @@
             flex-direction: column;
             cursor: pointer;
             gap: 5px;
-            padding: 8px;
+            padding: var(--spacing-small);
         }
 
         .burger-menu span {
@@ -123,15 +135,14 @@
             max-width: 900px;
             margin: 0 auto;
             padding: var(--spacing) 40px;
-            background: linear-gradient(135deg, var(--bg-lighter) 0%, var(--bg) 100%);
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%);
         }
 
         .section h2 {
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 16px;
-            letter-spacing: 0.5px;
-            color: var(--text-light);
+            color: var(--text);
         }
 
         /* Hero Section */
@@ -152,31 +163,9 @@
             margin-bottom: 12px;
         }
 
-        #pf-location {
-            font-size: 16px;
-            color: var(--text-light);
-            margin-bottom: 20px;
-        }
-
-        #pf-status {
-            display: inline-block;
-            background-color: var(--bg-light);
-            padding: 8px 16px;
-            border-radius: var(--radius);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
         /* Bio */
         .bio-item {
             margin-bottom: 40px;
-        }
-
-        #pf-bio {
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--text);
-            margin-bottom: 20px;
         }
 
         /* Specialties */
@@ -189,34 +178,19 @@
 
         #pf-skills li {
             background-color: var(--bg-light);
-            padding: 8px 16px;
+            padding: var(--spacing-small) 16px;
             border-radius: var(--radius);
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         /* Languages */
         .languages {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: var(--spacing);
         }
 
-        .language-item {
-            background-color: var(--bg-light);
-            padding: 16px;
-            border-radius: var(--radius);
-            font-size: 14px;
-        }
-
-        .language-item strong {
-            display: block;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-light);
-            margin-bottom: 4px;
-        }
 
         /* Projects */
         .projects {
@@ -227,47 +201,17 @@
 
         .project-card {
             border: 1px solid var(--border);
-            border-color: var(--primary);
             border-radius: var(--radius);
             padding: var(--spacing);
-            transition: all 0.3s;
-        }
-
-        /* Links */
-        .links-grid {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .link-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            text-decoration: none;
-            color: var(--text);
-            transition: all 0.3s;
-            font-size: 24px;
-        }
-
-        .link-btn:hover {
-            border-color: var(--primary);
-            background-color: var(--bg-lighter);
         }
 
         /* Back Button */
         .back-btn {
             background-color: var(--primary);
             color: white;
-            border: none;
-            padding: 14px 40px;
+            padding: var(--spacing-small) 20px;
             border-radius: var(--radius);
-            font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
@@ -287,41 +231,25 @@
         }
 
         .footer-content {
-            max-width: 1400px;
+            max-width: 900px;
             margin: 0 auto;
+            padding: 0 40px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
-
-        .footer-section h4 {
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 16px;
-        }
-
-        .footer-section a {
+        
+        .footer-content .link a {
             display: block;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 14px;
             margin-bottom: 12px;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
-
-        .footer-section a:hover {
-            opacity: 1;
         }
 
         .curator-credit {
             background-color: var(--bg);
-            padding: 12px 16px;
+            padding: var(--spacing-small) 16px;
             border-radius: var(--radius);
-            font-size: 13px;
+            font-size: var(--text-small);
             margin-bottom: 24px;
             border: 1px solid var(--border);
         }
@@ -341,7 +269,7 @@
             padding-top: 24px;
             text-align: center;
             font-size: 13px;
-            color: var(--text-lighter);
+            color: var(--text);
         }
 
         /* Mobile */
@@ -387,7 +315,6 @@
 
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 32px;
             }
         }
     </style>
@@ -399,8 +326,8 @@
       "profilePic": "profile.jpg",
       "location": "Da Nang, Vietnam",
       "skills": ["Theme Development", "Store Management"],
-      "bio": "Short professional bio goes here.",
-      "website": "https://example.com",
+      "bio": "Short professional bio goes here. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets.",
+      "website": "https://www.exmaple.com",
       "status": "Freelancer",
       "languages": {
         "vietnamese": "Intermediate",
@@ -434,8 +361,12 @@
             <div align=center>
                 <img id="pf-pic" alt="Profile"></img>
                 <h1 id="pf-name"></h1>
-                <div id="pf-location"></div>
-                <div id="pf-status"></div>
+                <div style="font-size: var(--text-small); display: flex; flex-direction: column; gap: var(--spacing-small);">
+                    <div id="pf-location"></div>
+                    <div id="pf-status"></div>
+                    <div class="link">
+                        <a id="pf-website" href=""></a>
+                </div>
             </div>
         </section>
 
@@ -446,7 +377,7 @@
                 <p id="pf-bio"></p>
             </div>
 
-            <h2>Specialties</h2>
+            <h2>Skills</h2>
             <div class="bio-item">
                 <ul id="pf-skills"></ul>
             </div>
@@ -469,24 +400,15 @@
             <h2>Projects</h2>
             <div class="projects">
                 <div class="project-card">
-                    <p>Project 1</p>
+                    <strong>Project 1</strong>
                     <p id="pf-project1"></p>
                 </div>
                 <div class="project-card">
-                    <p>Project 2</p>
+                    <strong>Project 2</strong>
                     <p id="pf-project2"></p>
                 </div>
             </div>
         </section>
-
-        <!-- Links Section-->
-        <section class="section">
-            <h2>Links</h2>
-            <div class="links-grid">
-                <a id="pf-website" class="link-btn" title="Website"></a>
-            </div>
-        </section>
-
         <!-- Back -->
         <section class="section">
             <a href="../index.html" class="back-btn">← Back to Browsing</a>
@@ -495,26 +417,23 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
+            <div>
                 <div class="footer-logo">LOGO</div>
                 <div class="curator-credit">
-                    Curated & maintained by <strong>Your Name</strong>, Shopify expert and developer in Da Nang. Quality-verified directory connecting businesses with experienced Shopify developers. Supporting the local development community.
+                Curated & maintained by <strong>Niklas S. Johansson</strong>. The directory is open for submission to anyone in Da Nang and central Vietnam, connecting businesses with Shopify designers.
                 </div>
             </div>
-            <div class="footer-section">
-                <h4>Navigation</h4>
-                <a href="../index.html">Browse Developers</a>
-                <a href="../about.html">About</a>
-                <a href="../contact.html">Contact</a>
-            </div>
-            <div class="footer-section">
-                <h4>Information</h4>
-                <a href="#">How It Works</a>
-                <a href="#">Curator Bio</a>
+            <div class="link">
+                <h3>Information</h3>
+                <a href="/shopify-developer-directory/">Browse Developers</a>
+                <a href="/shopify-developer-directory/contact/">Contact</a>
+                <a href="https://forms.gle/fLgVJmKLGkjFEG7a9">Submit Profile</a>
+                <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
+                <a href="/shopify-developer-directory/about/">About</a>
             </div>
         </div>
-        <div class="footer-divider">
-            © 2025 Your Name. All rights reserved. | Shopify Developers Directory
+        <div class="footer-divider link ">
+            © 2025 <a href="https://nsjohansson.com">Niklas S. Johansson</a>. All rights reserved. | Shopify Developers in Da Nang
         </div>
     </footer>
 
@@ -539,6 +458,7 @@
         document.getElementById('pf-location').textContent = data.location;
         document.getElementById('pf-bio').textContent = data.bio;
         document.getElementById('pf-website').href = data.website;
+        document.getElementById('pf-website').textContent = data.website;
         document.getElementById('pf-status').textContent = data.status;
         document.getElementById('pf-lang-vn').textContent = data.languages.vietnamese;
         document.getElementById('pf-lang-en').textContent = data.languages.english;
