@@ -464,23 +464,16 @@
             <div class="results-count"></div>
             <div class="listing-grid">
                 <!-- Listing 1 -->
-                <div class="listing-card" data-category="Theme Development">
-                    <div class="category-badge">Theme Development</div>
-                    <div class="listing-header">
-                        <div class="listing-image">Image</div>
-                        <div class="listing-info">
-                            <h3>Developer Name</h3>
-                            <p>Da Nang, Vietnam</p>
+                    <div class="listing-card" data-category="Theme Development">
+                        <div class="category-badge">…</div>
+                        <div class="listing-header">
+                            <div class="listing-image">…</div>
+                            <div class="listing-info">…</div>
                         </div>
+                        <p class="listing-description">…</p>
+                        <div class="listing-details">…</div>
+                        <div class="listing-actions">…</div>
                     </div>
-                    <p class="listing-description">Expert in custom Shopify theme development with 5+ years experience. Specializes in high-conversion stores and performance optimization.</p>
-                    <div class="listing-details">
-                        <span>💼 Freelancer</span>
-                    </div>
-                    <div class="listing-actions">
-                        <a href="developers/developer-name.html" class="listing-link">View Profile</a>
-                    </div>
-                </div>
 
                 <!-- Listing 2 -->
                 <div class="listing-card" data-category="App Development">
@@ -620,17 +613,24 @@ document.querySelectorAll('.filter-tag').forEach(tag => {
         
           profiles.forEach(p => {
             const card = document.createElement("div");
+            card.className = "profile-card";
+        
             card.innerHTML = `
               <a href="${p.url}">
-                <img src="${p.profilePic}">
-                <h2>${p.fullName}</h2>
-                <div>${p.location}</div>
+                <div class="thumb">
+                  <img src="${p.profilePic}" alt="${p.fullName}">
+                </div>
+                <h3>${p.fullName}</h3>
+                <div class="location">${p.location}</div>
+                <div class="status">${p.status}</div>
+                <div class="skills">${p.skills.slice(0, 2).join(", ")}</div>
               </a>
             `;
             container.appendChild(card);
           });
         });
     </script>
+    
 </body>
 
 </html>
