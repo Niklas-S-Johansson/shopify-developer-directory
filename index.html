@@ -77,7 +77,7 @@
 
         nav a:hover { color: var(--primary); }
 
-        /* Li nks and buttons */ 
+        /* Links and buttons */ 
         .link a {
             color: var(--text);
             text-decoration: none;
@@ -173,7 +173,7 @@
             background-color: #f0f0f0;
             padding: 8px 16px;
             border-radius: 14px;
-            font-size: 13px;
+            font-size: var(--text-small);
             cursor: pointer;
             transition: all 0.3s;
             border: 1px solid transparent;
@@ -231,7 +231,7 @@
         .listing-image {
             width: 80px;
             height: 80px;
-            background-color: #f0f0f0;
+            background-color: #var(--bg-light);
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -289,25 +289,6 @@
         .listing-actions {
             display: flex;
             gap: 12px;
-        }
-
-        .listing-link {
-            flex: 1;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 14px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.3s;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .listing-link:hover {
-            opacity: 0.9;
         }
 
         /* Footer */
@@ -461,18 +442,23 @@
 
         <!-- Directory Listings -->
         <section class="directory">
-            <div class="results-count"></div>
-            <div class="listing-grid">
                 <!-- Listing 1 -->
-                <div class="listing-card" data-category="Theme Development">
-                    <div class="category-badge">…</div>
-                    <div class="fullName">
-                        <div class="profilePic">…</div>
-                        <div class="listing-info">…</div>
+                <div class="listing-card" data-category="">
+                    <div class="category-badge"></div>
+                    <div class="listing-header">
+                        <div class="listing-image"></div>
+                        <div class="listing-info">
+                            <h3></h3>
+                            <p></p>
+                        </div>
                     </div>
-                    <p class="listing-description">…</p>
-                    <div class="listing-details">…</div>
-                    <div class="listing-actions">…</div>
+                    <p class="listing-description"></p>
+                    <div class="listing-details">
+                        <span></span>
+                    </div>
+                    <div class="listing-actions">
+                        <a href="developers/developer-name.html" class="link a">View Profile</a>
+                    </div>
                 </div>
 
                 <!-- Listing 2 -->
@@ -490,7 +476,7 @@
                         <span>💼 Consultant</span>
                     </div>
                     <div class="listing-actions">
-                        <a href="developers/developer-name.html" class="listing-link">View Profile</a>
+                        <a href="developers/developer-name.html" class="link a">View Profile</a>
                     </div>
                 </div>
 
@@ -509,7 +495,7 @@
                         <span>💼 Employed</span>
                     </div>
                     <div class="listing-actions">
-                        <a href="developers/developer-name.html" class="listing-link">View Profile</a>
+                        <a href="developers/developer-name.html" class="link a">View Profile</a>
                     </div>
                 </div>
             </div>
@@ -552,116 +538,113 @@
             lastScrollY = window.scrollY;
         });
 
-// Filter tags interaction
-document.querySelectorAll('.filter-tag').forEach(tag => {
-    tag.addEventListener('click', () => {
-        document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
-        tag.classList.add('active');
+        // Filter tags interaction
+        document.querySelectorAll('.filter-tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+                
+                const selectedCategory = tag.textContent.trim();
+                const cards = document.querySelectorAll('.listing-card');
+                let visibleCount = 0;
+                
+                cards.forEach(card => {
+                    if (selectedCategory === 'All') {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        if (card.getAttribute('data-category') === selectedCategory) {
+                            card.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
         
-        const selectedCategory = tag.textContent.trim();
-        const cards = document.querySelectorAll('.listing-card');
-        let visibleCount = 0;
-        
-        cards.forEach(card => {
-            if (selectedCategory === 'All') {
-                card.style.display = 'block';
-                visibleCount++;
-            } else {
-                if (card.getAttribute('data-category') === selectedCategory) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
+                // Initialize results count on page load
+                function updateResultsCount() {
+                    const visibleCards = document.querySelectorAll('.listing-card:not([style*="display: none"])').length;
+                    const totalCards = document.querySelectorAll('.listing-card').length;
+                    document.querySelector('.results-count').textContent = `Showing ${totalCards} developer${totalCards !== 1 ? 's' : ''}`;
                 }
-            }
+                
+                // Call on page load
+                document.addEventListener('DOMContentLoaded', updateResultsCount);
+                
+                // Update the results count
+                document.querySelector('.results-count').textContent = `Showing ${visibleCount} developer${visibleCount !== 1 ? 's' : ''}`;
+            });
         });
 
-        // Initialize results count on page load
-        function updateResultsCount() {
-            const visibleCards = document.querySelectorAll('.listing-card:not([style*="display: none"])').length;
-            const totalCards = document.querySelectorAll('.listing-card').length;
-            document.querySelector('.results-count').textContent = `Showing ${totalCards} developer${totalCards !== 1 ? 's' : ''}`;
-        }
+        (async function populateThumbnailsFromProfiles(){
+          const cards = Array.from(document.querySelectorAll('.listing-card'));
+          if (!cards.length) return;
         
-        // Call on page load
-        document.addEventListener('DOMContentLoaded', updateResultsCount);
+          // small helper
+          const truncate = (s, n=140) => (typeof s === 'string' && s.length>n) ? s.slice(0,n-1)+'…' : s || '';
         
-        // Update the results count
-        document.querySelector('.results-count').textContent = `Showing ${visibleCount} developer${visibleCount !== 1 ? 's' : ''}`;
-    });
-});
-
-<script>
-(async function populateThumbnailsFromProfiles(){
-  const cards = Array.from(document.querySelectorAll('.listing-card'));
-  if (!cards.length) return;
-
-  // small helper
-  const truncate = (s, n=140) => (typeof s === 'string' && s.length>n) ? s.slice(0,n-1)+'…' : s || '';
-
-  // process each card
-  await Promise.all(cards.map(async card => {
-    try {
-      const linkEl = card.querySelector('.listing-link');
-      if (!linkEl) return;
-
-      const href = linkEl.getAttribute('href');
-      if (!href) return;
-
-      // fetch profile page HTML (assumes same origin or CORS allowed)
-      const res = await fetch(href, {credentials: 'same-origin'});
-      if (!res.ok) return;
-
-      const text = await res.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(text, 'text/html');
-
-      // find script#profileData or <script type="application/json"> with id profileData
-      const script = doc.querySelector('script#profileData[type="application/json"]') ||
-                     Array.from(doc.querySelectorAll('script[type="application/json"]')).find(s => s.id === 'profileData');
-      if (!script) return;
-
-      const data = JSON.parse(script.textContent);
-
-      // map fields to existing nodes (no new classes, no structural changes)
-      const titleEl = card.querySelector('.listing-header .listing-info h3') || card.querySelector('h3');
-      if (titleEl && data.fullName) titleEl.textContent = data.fullName;
-
-      const locEl = card.querySelector('.listing-header .listing-info p') || card.querySelector('.listing-info p') || card.querySelector('p');
-      if (locEl && data.location) locEl.textContent = data.location;
-
-      const descEl = card.querySelector('.listing-description');
-      if (descEl && data.bio) descEl.textContent = truncate(data.bio, 160);
-
-      const detailsSpan = card.querySelector('.listing-details span') || card.querySelector('.listing-details');
-      if (detailsSpan && data.status) detailsSpan.textContent = data.status;
-
-      const imgContainer = card.querySelector('.listing-image');
-      if (imgContainer && data.profilePic) {
-        // resolve relative paths against the profile page URL
-        const resolved = new URL(data.profilePic, res.url).href;
-        // reuse existing container: replace its contents with an <img>
-        imgContainer.innerHTML = '';
-        const img = document.createElement('img');
-        img.src = resolved;
-        img.alt = data.fullName || 'Profile image';
-        img.decoding = 'async';
-        imgContainer.appendChild(img);
-      }
-
-      // keep the existing link but ensure it points to profile page (no change)
-      // If you want to set the link text to the website, uncomment the next two lines:
-      // if (data.website) { linkEl.href = data.website; linkEl.textContent = data.website; }
-
-    } catch (e) {
-      // fail silently for this card (do not break others)
-      console.warn('Failed to populate listing card:', e);
-    }
-  }));
-})();
-
+          // process each card
+          await Promise.all(cards.map(async card => {
+            try {
+              const linkEl = card.querySelector('.link a');
+              if (!linkEl) return;
+        
+              const href = linkEl.getAttribute('href');
+              if (!href) return;
+        
+              // fetch profile page HTML (assumes same origin or CORS allowed)
+              const res = await fetch(href, {credentials: 'same-origin'});
+              if (!res.ok) return;
+        
+              const text = await res.text();
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(text, 'text/html');
+        
+              // find script#profileData or <script type="application/json"> with id profileData
+              const script = doc.querySelector('script#profileData[type="application/json"]') ||
+                             Array.from(doc.querySelectorAll('script[type="application/json"]')).find(s => s.id === 'profileData');
+              if (!script) return;
+        
+              const data = JSON.parse(script.textContent);
+        
+              // map fields to existing nodes (no new classes, no structural changes)
+              const titleEl = card.querySelector('.listing-header .listing-info h3') || card.querySelector('h3');
+              if (titleEl && data.fullName) titleEl.textContent = data.fullName;
+        
+              const locEl = card.querySelector('.listing-header .listing-info p') || card.querySelector('.listing-info p') || card.querySelector('p');
+              if (locEl && data.location) locEl.textContent = data.location;
+        
+              const descEl = card.querySelector('.listing-description');
+              if (descEl && data.bio) descEl.textContent = truncate(data.bio, 160);
+        
+              const detailsSpan = card.querySelector('.listing-details span') || card.querySelector('.listing-details');
+              if (detailsSpan && data.status) detailsSpan.textContent = data.status;
+        
+              const imgContainer = card.querySelector('.listing-image');
+              if (imgContainer && data.profilePic) {
+                // resolve relative paths against the profile page URL
+                const resolved = new URL(data.profilePic, res.url).href;
+                // reuse existing container: replace its contents with an <img>
+                imgContainer.innerHTML = '';
+                const img = document.createElement('img');
+                img.src = resolved;
+                img.alt = data.fullName || 'Profile image';
+                img.decoding = 'async';
+                imgContainer.appendChild(img);
+              }
+        
+              // keep the existing link but ensure it points to profile page (no change)
+              // If you want to set the link text to the website, uncomment the next two lines:
+              // if (data.website) { linkEl.href = data.website; linkEl.textContent = data.website; }
+        
+            } catch (e) {
+              // fail silently for this card (do not break others)
+              console.warn('Failed to populate listing card:', e);
+            }
+          }));
+        })();
     </script>
-    
 </body>
 
 </html>
