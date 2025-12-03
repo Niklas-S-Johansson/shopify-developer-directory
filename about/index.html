@@ -222,15 +222,6 @@
             
             .section h2 { font-size: 24px; }
 
-            #pf-pic {
-                width: 120px;
-                height: 120px;
-            }
-
-            .languages { grid-template-columns: 1fr; }
-
-            .projects { grid-template-columns: 1fr; }
-
             .footer-content { grid-template-columns: 1fr; }
         }
     </style>
@@ -238,23 +229,23 @@
 
 <body>
 <!-- Header -->
-<header>
-    <div class="header-content">
-        <div class="logo"><div class="logo-placeholder">LOGO</div></div>
-        <nav>
-            <a href="/shopify-developer-directory/">Browse Developers</a>
-            <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
-            <a href="/shopify-developer-directory/contact/">Contact</a>
-        </nav>
-        <a href="https://forms.gle/fLgVJmKLGkjFEG7a9" class="submit-btn">Submit Profile</a>
-    </div>
-    <div class="burger-menu">
-        <span></span><span></span><span></span>
-    </div>
-</header>
+    <header>
+        <div class="header-content">
+            <div class="logo">LOGO</div>
+            <nav>
+              <a href="/shopify-developer-directory/">Browse Developers</a>
+              <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
+              <a href="/shopify-developer-directory/contact/">Contact</a>
+            </nav>
+            <a href="https://forms.gle/fLgVJmKLGkjFEG7a9" class="button">Submit Profile</a>
+            <div class="burger-menu onclick="alert('Menu clicked')">
+          <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
 
     <!-- Page Content -->
-    <section class="section h1 h2 p">
+    <section class="section h1 h2">
         <h1>About This Directory</h1>
         <p>This directory is meant to highlight people with knowledge of Shopify, locals and perhaps foreigners, who are located in Da Nang. I encourage developers, designers, and freelancers to sign up.</p>
     </section>
