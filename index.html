@@ -130,38 +130,33 @@
             margin-top: 80px;
         }
 
-        .hero {
-            padding: 60px 40px;
-            text-align: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px var(--spacing);
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%);
         }
 
-        .hero h1 {
+        .section h1 {
             font-size: 48px;
             font-weight: 700;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            font-weight: 700;
             margin-bottom: 16px;
+            color: var(--text);
         }
 
-        .hero p {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 24px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        .section p {
+            margin-bottom: 20px;
+            margin-left: var(--spacing-small);
         }
 
-        .hero-meta {
-            font-size: 14px;
-            color: #999;
-            margin-bottom: 32px;
-        }
-
-        .hero-meta strong {
-            color: var(--primary-color);
-        }
-
-        /* Search/Filter Section */
+        /* Filter Section */
         .search-section {
             max-width: 1400px;
             margin: 40px auto;
@@ -396,6 +391,7 @@
             .section h1 {
                 font-size: 32px;
             }
+            
             .section h2 {
                 font-size: 24px;
             }
@@ -530,24 +526,23 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
+            <div>
                 <div class="footer-logo">LOGO</div>
                 <div class="curator-credit">
-                    Curated & maintained by <strong>Niklas S. Johansson</strong>. The directory is open for submission to anyone in Da Nang and central Vietnam, connecting businesses with Shopify designers.
+                Curated & maintained by <strong>Niklas S. Johansson</strong>. The directory is open for submission to anyone in Da Nang and central Vietnam, connecting businesses with Shopify designers.
                 </div>
             </div>
-            <div class="footer-section">
-                <h4>Information</h4>
+            <div class="link">
+                <h3>Information</h3>
                 <a href="/shopify-developer-directory/">Browse Developers</a>
                 <a href="/shopify-developer-directory/contact/">Contact</a>
                 <a href="https://forms.gle/fLgVJmKLGkjFEG7a9">Submit Profile</a>
                 <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
                 <a href="/shopify-developer-directory/about/">About</a>
-
             </div>
         </div>
-        <div class="footer-divider">
-            © 2025 <a href="https://nsjohansson.com" target="_blank">Niklas S. Johansson</a>. All rights reserved. | Shopify Developers Directory
+        <div class="footer-divider link ">
+            © 2025 <a href="https://nsjohansson.com" target="_blank">Niklas S. Johansson</a>. All rights reserved. | Shopify Developers in Da Nang
         </div>
     </footer>
 
