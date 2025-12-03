@@ -597,6 +597,39 @@ document.querySelectorAll('.filter-tag').forEach(tag => {
         document.querySelector('.results-count').textContent = `Showing ${visibleCount} developer${visibleCount !== 1 ? 's' : ''}`;
     });
 });
+
+        // Profile pages list
+        const profilePages = [
+          "/shopify-developer-directory/profiles/"
+        ];
+
+        // Fetch profile
+        Promise.all(
+          profilePages.map(url =>
+            fetch(url)
+              .then(r => r.text())
+              .then(html => {
+                const doc = new DOMParser().parseFromString(html, "text/html");
+                const data = JSON.parse(doc.getElementById("profileData").textContent);
+                data.url = url;
+                return data;
+              })
+          )
+        ).then(profiles => {
+          const container = document.getElementById("directory-list");
+        
+          profiles.forEach(p => {
+            const card = document.createElement("div");
+            card.innerHTML = `
+              <a href="${p.url}">
+                <img src="${p.profilePic}">
+                <h2>${p.fullName}</h2>
+                <div>${p.location}</div>
+              </a>
+            `;
+            container.appendChild(card);
+          });
+        });
     </script>
 </body>
 
