@@ -464,16 +464,16 @@
             <div class="results-count"></div>
             <div class="listing-grid">
                 <!-- Listing 1 -->
-                    <div class="listing-card" data-category="Theme Development">
-                        <div class="category-badge">…</div>
-                        <div class="listing-header">
-                            <div class="listing-image">…</div>
-                            <div class="listing-info">…</div>
-                        </div>
-                        <p class="listing-description">…</p>
-                        <div class="listing-details">…</div>
-                        <div class="listing-actions">…</div>
+                <div class="listing-card" data-category="Theme Development">
+                    <div class="category-badge">…</div>
+                    <div class="fullName">
+                        <div class="profilePic">…</div>
+                        <div class="listing-info">…</div>
                     </div>
+                    <p class="listing-description">…</p>
+                    <div class="listing-details">…</div>
+                    <div class="listing-actions">…</div>
+                </div>
 
                 <!-- Listing 2 -->
                 <div class="listing-card" data-category="App Development">
@@ -591,44 +591,75 @@ document.querySelectorAll('.filter-tag').forEach(tag => {
     });
 });
 
-        // Profile pages list
-        const profilePages = [
-          "/shopify-developer-directory/profiles/"
-        ];
+<script>
+(async function populateThumbnailsFromProfiles(){
+  const cards = Array.from(document.querySelectorAll('.listing-card'));
+  if (!cards.length) return;
 
-        // Fetch profile
-        Promise.all(
-          profilePages.map(url =>
-            fetch(url)
-              .then(r => r.text())
-              .then(html => {
-                const doc = new DOMParser().parseFromString(html, "text/html");
-                const data = JSON.parse(doc.getElementById("profileData").textContent);
-                data.url = url;
-                return data;
-              })
-          )
-        ).then(profiles => {
-          const container = document.getElementById("directory-list");
-        
-          profiles.forEach(p => {
-            const card = document.createElement("div");
-            card.className = "profile-card";
-        
-            card.innerHTML = `
-              <a href="${p.url}">
-                <div class="thumb">
-                  <img src="${p.profilePic}" alt="${p.fullName}">
-                </div>
-                <h3>${p.fullName}</h3>
-                <div class="location">${p.location}</div>
-                <div class="status">${p.status}</div>
-                <div class="skills">${p.skills.slice(0, 2).join(", ")}</div>
-              </a>
-            `;
-            container.appendChild(card);
-          });
-        });
+  // small helper
+  const truncate = (s, n=140) => (typeof s === 'string' && s.length>n) ? s.slice(0,n-1)+'…' : s || '';
+
+  // process each card
+  await Promise.all(cards.map(async card => {
+    try {
+      const linkEl = card.querySelector('.listing-link');
+      if (!linkEl) return;
+
+      const href = linkEl.getAttribute('href');
+      if (!href) return;
+
+      // fetch profile page HTML (assumes same origin or CORS allowed)
+      const res = await fetch(href, {credentials: 'same-origin'});
+      if (!res.ok) return;
+
+      const text = await res.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(text, 'text/html');
+
+      // find script#profileData or <script type="application/json"> with id profileData
+      const script = doc.querySelector('script#profileData[type="application/json"]') ||
+                     Array.from(doc.querySelectorAll('script[type="application/json"]')).find(s => s.id === 'profileData');
+      if (!script) return;
+
+      const data = JSON.parse(script.textContent);
+
+      // map fields to existing nodes (no new classes, no structural changes)
+      const titleEl = card.querySelector('.listing-header .listing-info h3') || card.querySelector('h3');
+      if (titleEl && data.fullName) titleEl.textContent = data.fullName;
+
+      const locEl = card.querySelector('.listing-header .listing-info p') || card.querySelector('.listing-info p') || card.querySelector('p');
+      if (locEl && data.location) locEl.textContent = data.location;
+
+      const descEl = card.querySelector('.listing-description');
+      if (descEl && data.bio) descEl.textContent = truncate(data.bio, 160);
+
+      const detailsSpan = card.querySelector('.listing-details span') || card.querySelector('.listing-details');
+      if (detailsSpan && data.status) detailsSpan.textContent = data.status;
+
+      const imgContainer = card.querySelector('.listing-image');
+      if (imgContainer && data.profilePic) {
+        // resolve relative paths against the profile page URL
+        const resolved = new URL(data.profilePic, res.url).href;
+        // reuse existing container: replace its contents with an <img>
+        imgContainer.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = resolved;
+        img.alt = data.fullName || 'Profile image';
+        img.decoding = 'async';
+        imgContainer.appendChild(img);
+      }
+
+      // keep the existing link but ensure it points to profile page (no change)
+      // If you want to set the link text to the website, uncomment the next two lines:
+      // if (data.website) { linkEl.href = data.website; linkEl.textContent = data.website; }
+
+    } catch (e) {
+      // fail silently for this card (do not break others)
+      console.warn('Failed to populate listing card:', e);
+    }
+  }));
+})();
+
     </script>
     
 </body>
