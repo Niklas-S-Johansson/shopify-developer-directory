@@ -17,9 +17,8 @@
             --text: #222;
             --text-small: 13px;
             --bg: #ffffff;
-            --bg-light: #f0f0f0;
+            --bg-light: #f4f4f4;
             --border: #e0e0e0;
-            --footer-bg: #f4f4f4;
             --spacing: 24px;
             --spacing-small: 10px;
             --radius: 14px;
@@ -170,7 +169,7 @@
         }
 
         .filter-tag {
-            background-color: #f0f0f0;
+            background-color: var(--bg-light);
             padding: 8px 16px;
             border-radius: 14px;
             font-size: var(--text-small);
@@ -252,17 +251,6 @@
             color: #666;
         }
 
-        .skill-badge {
-            display: inline-block;
-            background-color: #f0f0f0;
-            padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #666;
-            margin-bottom: 12px;
-        }
-
         .listing-description {
             font-size: 14px;
             color: #666;
@@ -293,7 +281,7 @@
 
         /* Footer */
         footer {
-            background-color: var(--footer-bg);
+            background-color: var(--bg-light);
             padding: 60px 40px;
         }
 
@@ -448,7 +436,7 @@
             <div class="listing-grid">
                 <!-- Listing 1 -->
                 <div class="listing-card" data-category="">
-                    <div class="skill-badge"></div>
+                    <div class="filter-tag active"></div>
                     <div class="listing-header">
                         <div class="listing-image"></div>
                         <div class="listing-info">
@@ -467,7 +455,7 @@
 
                 <!-- Listing 2 -->
                 <div class="listing-card" data-category="App Development">
-                    <div class="skill-badge">App Development</div>
+                    <div class="filter-tag active">App Development</div>
                     <div class="listing-header">
                         <div class="listing-image">Image</div>
                         <div class="listing-info">
@@ -486,7 +474,7 @@
 
                 <!-- Listing 3 -->
                 <div class="listing-card" data-category="Store Management">
-                    <div class="skill-badge">Store Management</div>
+                    <div class="filter-tag active">Store Management</div>
                     <div class="listing-header">
                         <div class="listing-image">Image</div>
                         <div class="listing-info">
