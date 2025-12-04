@@ -576,7 +576,9 @@
                 document.querySelector('.results-count').textContent = `Showing ${visibleCount} developer${visibleCount !== 1 ? 's' : ''}`;
             });
         });
-
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
         (async function populateThumbnailsFromProfiles(){
           const cards = Array.from(document.querySelectorAll('.listing-card'));
           if (!cards.length) return;
