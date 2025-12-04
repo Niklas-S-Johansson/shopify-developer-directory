@@ -408,7 +408,7 @@
               <a href="/shopify-developer-directory/contact/">Contact</a>
             </nav>
             <a href="https://forms.gle/fLgVJmKLGkjFEG7a9" class="button">Submit Profile</a>
-            <div class="burger-menu onclick="alert('Menu clicked')">
+            <div class="burger-menu" onclick="alert('Menu clicked')">
               <span></span><span></span><span></span>
             </div>
         </div>
@@ -641,8 +641,7 @@
               // if (data.website) { linkEl.href = data.website; linkEl.textContent = data.website; }
         
             } catch (e) {
-              // fail silently for this card (do not break others)
-              console.warn('Failed to populate listing card:', e);
+              console.error('ERROR on card:', linkEl.href, e);
             }
           }));
         })();
