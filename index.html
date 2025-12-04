@@ -589,7 +589,7 @@
           // process each card
           await Promise.all(cards.map(async card => {
             try {
-              const linkEl = card.querySelector('.link a');
+              const linkEl = card.querySelector('.listing-actions a');
               if (!linkEl) return;
         
               const href = linkEl.getAttribute('href');
