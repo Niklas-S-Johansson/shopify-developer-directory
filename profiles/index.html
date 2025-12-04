@@ -452,7 +452,7 @@
         document.getElementById('pf-lang-en').textContent = data.languages.english;
         document.getElementById('pf-project1').textContent = data.project1;
         document.getElementById('pf-project2').textContent = data.project2;
-        document.getElementById('pf-skills').innerHTML = skills
+        document.getElementById('pf-skills').innerHTML = data.skills
           .map(s => `<li>${s}</li>`)
           .join('');
     </script>
