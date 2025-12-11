@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7b30dd;
+            --text: #222;
+            --text-small: 13px;
+            --bg: #ffffff;
+            --bg-light: #f0f0f0;
+            --border: #e0e0e0;
+            --footer-bg: #f4f4f4;
+            --spacing: 24px;
+            --spacing-small: 10px;
+            --radius: 14px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            background-color: var(--bg);
+            top: 0;
+            width: 100%;
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 70px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hyperlinks */
+        .link a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: var(--text-small);
+            margin-bottom: var(--spacing-small);
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .link a:hover {
+            opacity: 1;
+        }
+
+        .button {
+            background-color: var(--primary);
+            color: white;
+            padding: var(--spacing-small) 20px;
+            border-color: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+       .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 10px;
+            margin-left: auto;
+        }
+
+        .burger-menu span {
+            width: 24px;
+            height: 2px;
+            background-color: var();
+        }
+
+        /* Main */
+        main {
+            margin-top: 80px;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--spacing) 40px;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg) 100%);
+        }
+
+        .section h1 {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        /* Profile Top Section */
+        #pf-pic {
+            width: 160px;
+            height: 160px;
+            background-color: var(--bg-light);
+            border-radius: var(--radius);
+            margin: 0 auto 32px;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Bio */
+        .bio-item {
+            margin-bottom: 40px;
+        }
+
+        /* Specialties */
+        #pf-skills {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        #pf-skills li {
+            background-color: var(--bg-light);
+            padding: var(--spacing-small) 16px;
+            border-radius: var(--radius);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* Languages */
+        .languages {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing);
+        }
+
+
+        /* Projects */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing);
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--spacing);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            padding: 60px 40px;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-content .link a {
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .curator-credit {
+            background-color: var(--bg);
+            padding: var(--spacing-small) 16px;
+            border-radius: var(--radius);
+            font-size: var(--text-small);
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .curator-credit strong {
+            color: var(--primary);
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-divider {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 12px 20px;
+                gap: 16px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .logo {
+                flex: 1;
+                text-align: center;
+            }
+
+            .section {
+                padding: 40px 20px;
+            }
+
+            .section h1 {
+                font-size: 32px;
+            }
+            
+            .section h2 {
+                font-size: 24px;
+            }
+
+            #pf-pic {
+                width: 120px;
+                height: 120px;
+            }
+
+            .languages {
+                grid-template-columns: 1fr;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script id="profileData" type="application/json">
+    {
+      "fullName": "Jane Doe",
+      "profilePic": "profile.jpg",
+      "location": "Da Nang, Vietnam",
+      "skills": ["Dropshipping Exp", "App dev"],
+      "bio": "I am an experienced dropshipper. I've built a few stores of my own, but am mostly working with clients to improve their OPS.",
+      "website": "https://www.alsoexample.com",
+      "status": "Freelancer",
+      "languages": {
+        "vietnamese": "Basic",
+        "english": "Fluent"
+      },
+      "project1": "I developed the TableBrand for a table selling dropshipper who were expanding their OPS to a niche store. They needed a brand for their an in-house developed line of products.",
+      "project2": "Durign 2 months I built 10 dropshipping stores. These were the results."
+    }
+    </script>
+    
+    <header>
+        <div class="header-content">
+            <div class="logo">LOGO</div>
+            <nav>
+              <a href="/shopify-developer-directory/">Browse Developers</a>
+              <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
+              <a href="/sh opify-developer-directory/contact/">Contact</a>
+            </nav>
+            <a href="https://forms.gle/fLgVJmKLGkjFEG7a9" class="button">Submit Profile</a>
+        </div>
+        <div class="burger-menu onclick="alert('Menu clicked')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Profile Top Section -->
+        <section class="section">
+            <div align=center>
+                <img id="pf-pic" alt="Profile"></img>
+                <h1 id="pf-name"></h1>
+                <div style="font-size: var(--text-small); display: flex; flex-direction: column; gap: var(--spacing-small);">
+                    <div id="pf-location"></div>
+                    <div id="pf-status"></div>
+                    <div class="link">
+                        <a id="pf-website" href=""></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shopify Developer Bio Section -->
+        <section class="section">
+            <h2>About</h2>
+            <div class="bio-item">
+                <p id="pf-bio"></p>
+            </div>
+
+            <h2>Skills</h2>
+            <div class="bio-item">
+                <ul id="pf-skills"></ul>
+            </div>
+
+            <h2>Languages</h2>
+            <div class="languages">
+                <div class="language-item">
+                    <strong>Vietnamese</strong>
+                    <div id="pf-lang-vn"></div>
+                </div>
+                <div class="language-item">
+                    <strong>English</strong>
+                    <div id="pf-lang-en"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <strong>Project 1</strong>
+                    <p id="pf-project1"></p>
+                </div>
+                <div class="project-card">
+                    <strong>Project 2</strong>
+                    <p id="pf-project2"></p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Back -->
+        <section class="section">
+            <a href="../index.html" class="button">← Back to Browsing</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">LOGO</div>
+                <div class="curator-credit">
+                Curated & maintained by <strong>Niklas S. Johansson</strong>. The directory is open for submission to anyone in Da Nang and central Vietnam, connecting businesses with Shopify designers.
+                </div>
+            </div>
+            <div class="link">
+                <h3>Information</h3>
+                <a href="/shopify-developer-directory/">Browse Developers</a>
+                <a href="/shopify-developer-directory/contact/">Contact</a>
+                <a href="https://forms.gle/fLgVJmKLGkjFEG7a9">Submit Profile</a>
+                <a href="/shopify-developer-directory/how-it-works/">How It Works</a>
+                <a href="/shopify-developer-directory/about/">About</a>
+            </div>
+        </div>
+        <div class="footer-divider link ">
+            © 2025 <a href="https://nsjohansson.com" target="_blank">Niklas S. Johansson</a>. All rights reserved. | Shopify Developers in Da Nang
+        </div>
+    </footer>
+
+    <script>
+        let lastScrollY = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            lastScrollY = window.scrollY;
+        });
+    </script>
+
+    <script>
+        const data = JSON.parse(document.getElementById('profileData').textContent);
+        document.getElementById('pf-name').textContent = data.fullName;
+        document.getElementById('pf-pic').src = data.profilePic;
+        document.getElementById('pf-location').textContent = data.location;
+        document.getElementById('pf-bio').textContent = data.bio;
+        document.getElementById('pf-website').href = data.website;
+        document.getElementById('pf-website').textContent = data.website;
+        document.getElementById('pf-status').textContent = data.status;
+        document.getElementById('pf-lang-vn').textContent = data.languages.vietnamese;
+        document.getElementById('pf-lang-en').textContent = data.languages.english;
+        document.getElementById('pf-project1').textContent = data.project1;
+        document.getElementById('pf-project2').textContent = data.project2;
+        document.getElementById('pf-skills').innerHTML = data.skills
+          .map(s => `<li>${s}</li>`)
+          .join('');
+    </script>
+</body>
+</html>
