@@ -227,7 +227,7 @@
             margin-bottom: 16px;
         }
 
-        .listing-image {
+        .pf-pic {
             width: 80px;
             height: 80px;
             background-color: #var(--bg-light);
@@ -240,7 +240,7 @@
             flex-shrink: 0;
         }
 
-        .listing-image img {
+        .pf-pic img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -439,7 +439,7 @@
                 <div class="listing-card" data-category="">
                     <div class="filter-tag active"></div>
                     <div class="listing-header">
-                        <div class="listing-image"></div>
+                        <div class="pf-pic"></div>
                         <div class="listing-info">
                             <h3></h3>
                             <p></p>
@@ -458,7 +458,7 @@
                 <div class="listing-card" data-category="">
                     <div class="filter-tag active"></div>
                     <div class="listing-header">
-                        <img class="listing-image"></img>
+                        <div class="pf-pic"></div>
                         <div class="listing-info">
                             <h3></h3>
                             <p></p>
@@ -477,7 +477,7 @@
                 <div class="listing-card" data-category="">
                     <div class="filter-tag active"></div>
                     <div class="listing-header">
-                        <img class="listing-image"></img>
+                        <div class="pf-pic"></div>
                         <div class="listing-info">
                             <h3></h3>
                             <p></p>
@@ -496,7 +496,7 @@
                 <div class="listing-card" data-category="">
                     <div class="filter-tag active"></div>
                     <div class="listing-header">
-                        <img class="listing-image"></img>
+                        <div class="pf-pic"></div>
                         <div class="listing-info">
                             <h3></h3>
                             <p></p>
@@ -634,7 +634,7 @@
               const detailsSpan = card.querySelector('.listing-details span') || card.querySelector('.listing-details');
               if (detailsSpan && data.status) detailsSpan.textContent = data.status;
         
-              const imgContainer = card.querySelector('.listing-image');
+              const imgContainer = card.querySelector('.pf-pic');
               if (imgContainer && data.profilePic) {
                 // resolve relative paths against the profile page URL
                 const resolved = new URL(data.profilePic, res.url).href;
