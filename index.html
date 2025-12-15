@@ -650,6 +650,7 @@
                 img.src = resolved;
                 img.alt = data.fullName || 'Profile image';
                 img.decoding = 'async';
+                  img.onerror = () => { console.error('Image failed to load:', resolved); img.alt = 'Image Error'; };
                 imgContainer.appendChild(img);
               }
         
