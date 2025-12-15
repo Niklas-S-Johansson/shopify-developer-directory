@@ -168,7 +168,7 @@
             flex-wrap: wrap;
         }
 
-        .filter-tag {
+        .skill-tag {
             background-color: var(--bg-light);
             padding: 8px 16px;
             border-radius: 14px;
@@ -178,12 +178,12 @@
             border: 1px solid transparent;
         }
 
-        .filter-tag:hover {
+        .skill-tag:hover {
             background-color: var(--primary-color);
             font-color: white;
         }
 
-        .filter-tag.active {
+        .skill-tag.active {
             background-color: var(--primary-color);
             font-color: white;
         }
@@ -409,14 +409,14 @@
             <div>
                 <p>Filter by skill</p>
                 <div class="filters">
-                    <div class="filter-tag active">All</div>
-                    <div class="filter-tag">App Dev</div>
-                    <div class="filter-tag">Theme Dev</div>
-                    <div class="filter-tag">Dropshipping Exp</div>
-                    <div class="filter-tag">Enterprise Exp</div>
-                    <div class="filter-tag">Built Multiple Stores</div>
-                    <div class="filter-tag">Store Management</div>
-                    <div class="filter-tag">Custom Sections</div>
+                    <div class="skill-tag active">All</div>
+                    <div class="skill-tag">App Dev</div>
+                    <div class="skill-tag">Theme Dev</div>
+                    <div class="skill-tag">Dropshipping Exp</div>
+                    <div class="skill-tag">Enterprise Exp</div>
+                    <div class="skill-tag">Built Multiple Stores</div>
+                    <div class="skill-tag">Store Management</div>
+                    <div class="skill-tag">Custom Sections</div>
                 </div>
             </div>
         </section>
@@ -427,7 +427,7 @@
             <div class="listing-grid">
                 <!-- Listing 1 -->
                 <div class="listing-card" data-category="">
-                    <div class="filter-tag active"></div>
+                    <div class="skill-tag active"></div>
                     <div class="listing-header">
                         <div class="pf-pic"></div>
                         <div class="listing-info">
@@ -446,7 +446,7 @@
 
                 <!-- Listing 2 -->
                 <div class="listing-card" data-category="">
-                    <div class="filter-tag active"></div>
+                    <div class="skill-tag active"></div>
                     <div class="listing-header">
                         <div class="pf-pic"></div>
                         <div class="listing-info">
@@ -465,7 +465,7 @@
 
                 <!-- Listing 3 -->
                 <div class="listing-card" data-category="">
-                    <div class="filter-tag active"></div>
+                    <div class="skill-tag active"></div>
                     <div class="listing-header">
                         <div class="pf-pic"></div>
                         <div class="listing-info">
@@ -484,7 +484,7 @@
 
                 <!-- Listing 4 -->
                 <div class="listing-card" data-category="">
-                    <div class="filter-tag active"></div>
+                    <div class="skill-tag active"></div>
                     <div class="listing-header">
                         <div class="pf-pic"></div>
                         <div class="listing-info">
@@ -540,9 +540,9 @@
         });
 
         // Filter tags interaction
-        document.querySelectorAll('.filter-tag').forEach(tag => {
+        document.querySelectorAll('.skill-tag').forEach(tag => {
             tag.addEventListener('click', () => {
-                document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.skill-tag').forEach(t => t.classList.remove('active'));
                 tag.classList.add('active');
                 
                 const selectedCategory = tag.textContent.trim();
@@ -554,13 +554,14 @@
                         card.style.display = 'block';
                         visibleCount++;
                     } else {
-                        if (card.getAttribute('data-category') === selectedCategory) {
-                            card.style.display = 'block';
-                            visibleCount++;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    }
+                        const cardSkills = card.getAttribute('data-skills') || '';
+                        if (cardSkills.includes(selectedCategory)) {
+                            card.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
                 });
         
                 // Initialize results count on page load
@@ -621,8 +622,25 @@
               const descEl = card.querySelector('.listing-description');
               if (descEl && data.bio) descEl.textContent = truncate(data.bio, 160);
         
-              const detailsSpan = card.querySelector('.listing-details span') || card.querySelector('.listing-details');
-              if (detailsSpan && data.status) detailsSpan.textContent = data.status;
+              const tagsContainer = card.querySelector('.listing-details'); // Reusing the tags container
+              
+              // 1. Set the Status Text (if it exists)
+              if (tagsContainer && data.status) {
+                  // Using a span to hold the status, or just setting the text if no span exists
+                  (tagsContainer.querySelector('span') || tagsContainer).textContent = data.status;
+              }
+
+              // 2. Render Skills as Tags
+              if (tagsContainer && Array.isArray(data.skills)) {
+                  // Set the data-skills attribute for filtering (Fix 3A)
+                  card.setAttribute('data-skills', data.skills.join(','));
+                
+                  // Create and append the tags
+                  tagsContainer.innerHTML += data.skills
+                    .slice(0, 3) // Optional: Limit to 3 tags
+                    .map(skill => `<span class="skill-tag">${skill}</span>`)
+                    .join('');
+              }
         
               const imgContainer = card.querySelector('.pf-pic');
               if (imgContainer && data.profilePic) {
